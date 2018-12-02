@@ -84,5 +84,18 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+// @import "roboto";
+// @import "noto-sans";
+
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  src: url('../assets/fonts/Pacifico-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Fred';
+  font-style: normal;
+  src: url('../assets/fonts/FrederickatheGreat-Regular.ttf')
+}
+

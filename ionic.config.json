@@ -1,5 +1,7 @@
 {
   "name": "BBGram",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

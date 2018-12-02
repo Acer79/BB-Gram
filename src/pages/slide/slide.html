@@ -1,0 +1,27 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>{{ titles[indx] }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  
+  <div *ngFor="let image of photoSelection">
+    <img [src]="image.img">
+  </div>
+  
+  <!--<ion-slides *ngIf="viewLoaded" autoplay="2000" loop="true" speed="1000">-->
+  <!--  <ion-slide *ngFor="let image of photoSelection">-->
+  <!--    <img src="{{image.img}}">-->
+  <!--  </ion-slide>-->
+  <!--</ion-slides>-->
+  
+</ion-content>

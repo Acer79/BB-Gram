@@ -1,0 +1,65 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Image Gallery</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="galleryType">
+    <ion-segment-button value="regular">
+      Regular
+    </ion-segment-button>
+    <ion-segment-button value="pinterest">
+      Pinterest
+    </ion-segment-button>
+  </ion-segment>
+  
+  <div [ngSwitch]="galleryType">
+    
+    <ion-grid *ngSwitchCase="'regular'">
+      <ion-row>
+        <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of photoSelection; let i = index" (click)="onSelect(image, i)">
+          <button class="button-border" [disabled]="disabled[i]">
+            <img
+              class="image-container"
+              [src]="image.img" 
+              style="width : 100% ; height : 100%" 
+              >
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <div class="images" *ngSwitchCase="'pinterest'">
+      <div class="one-image" *ngFor="let image of photoSelection; let i = index" (click)="onSelect(image, i)">
+        <button [disabled]="disabled[i]" class="button-border">
+          <img [src]="image.img">
+        </button>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngIf="selectStatus">
+              <button ion-button icon-only color="danger" full (click)="onDeletePhotos()">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+              </button>
+            </ion-col>
+            <ion-col col-6 *ngIf="selectStatus">
+              <button ion-button icon-only color="secondary" full (click)="onCreate()">
+                <ion-icon name="create"></ion-icon>
+                Create
+              </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
