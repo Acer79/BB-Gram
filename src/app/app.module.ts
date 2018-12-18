@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { GalleryPage } from '../pages/gallery/gallery';
 import { HomePage } from '../pages/home/home';
@@ -38,6 +39,7 @@ import { SlidePage } from '../pages/slide/slide';
     SplashScreen,
     Camera,
     File,
+    SocialSharing,
     PhotoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
