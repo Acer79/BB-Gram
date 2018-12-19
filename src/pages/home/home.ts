@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, AlertController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SlidePage } from "../slide/slide";
 import { PhotoService } from '../../services/photo.service';
@@ -15,7 +16,8 @@ export class HomePage {
 
   constructor(private modalCtrl: ModalController,
               private photoService: PhotoService,
-              private alertCtrl: AlertController) {}
+              private alertCtrl: AlertController,
+              private socialSharing: SocialSharing) {}
 
   ionViewDidEnter() {
     this.titles = this.photoService.getTitle();
@@ -64,6 +66,7 @@ export class HomePage {
           text: 'Enter',
           handler: data => {
             this.photoService.editTitle(index, data.title);
+            this.ionViewDidEnter();
           }
         }
       ]
@@ -72,11 +75,23 @@ export class HomePage {
 
     console.log("Edit button was pressed");
   
-    this.ionViewDidEnter();
   }
 
 
   onShareRoll() {
+        // Check if sharing via email is supported
+    this.socialSharing.canShareViaEmail().then(() => {
+      // Sharing via email is possible
+    }).catch(() => {
+      // Sharing via email is not possible
+    });
+    
+    // Share via email
+    this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+      // Success!
+    }).catch(() => {
+      // Error!
+    });
     console.log("Shared button was pressed");
   }
 }

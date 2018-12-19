@@ -5,23 +5,43 @@
     <h1>BB-GRAM</h1>
     <hr>
     <h3 *ngIf="!show">Rewind and Recapture the Moments</h3>
+    
+    <!--<div *ngFor="let select of selection; let i = index">-->
+    <!--  <ion-fab top right>-->
+    <!--    <button ion-fab mini color="light" (click)="showOptions">-->
+    <!--      <ion-icon name="more"></ion-icon>-->
+    <!--    </button>-->
+    <!--    <ion-fab-list>-->
+    <!--      <button ion-fab color="secondary"><ion-icon name="create" (click)="onEditRoll()"></ion-icon></button>-->
+    <!--      <button ion-fab color="primary"><ion-icon name="share" (click)="onShareRoll()"></ion-icon></button>-->
+    <!--      <button ion-fab color="danger"><ion-icon name="trash" (click)="onDeleteRoll()"></ion-icon></button>-->
+    <!--    </ion-fab-list>-->
+    <!--  </ion-fab>-->
+    <!--  <ion-card>-->
+    <!--    <img [src]="select[0].img" (click)="onPlaySlide(i)">-->
+    <!--    <div class="card-title">{{ titles[i] }}</div>-->
+    <!--  </ion-card>  -->
+    <!--</div>  -->
+    
     <ion-card *ngFor="let select of selection; let i = index">
-      <img [src]="select[0].img" (click)="onPlaySlide(i)">
-      <button ion-button color="secondary" (click)="onEditRoll(i)">Edit</button>
-      <button ion-button color="primary" (click)="onShareRoll(i)">Share</button>
-      <button ion-button color="danger" (click)="onDeleteRoll(i)">Delete</button>
-      <!-- <ion-fab top right>
-        <button ion-fab mini color="light" (click)="showOptions">
-          <ion-icon name="more"></ion-icon>
-        </button>
-        <ion-fab-list>
-          <button ion-fab color="secondary"><ion-icon name="create" (click)="onEditRoll()"></ion-icon></button>
-          <button ion-fab color="primary"><ion-icon name="share" (click)="onShareRoll()"></ion-icon></button>
-          <button ion-fab color="danger"><ion-icon name="trash" (click)="onDeleteRoll()"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab> -->
+        <img [src]="select[0].img" (click)="onPlaySlide(i)">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button ion-button block color="secondary" (click)="onEditRoll(i)">Edit</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button block color="primary" (click)="onShareRoll(i)">Share</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button block color="danger" (click)="onDeleteRoll(i)">Delete</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
       <div class="card-title">{{ titles[i] }}</div>
     </ion-card>
+    
+    
   </ion-header>
   <div class="video-container">
     <video *ngIf="!show" autoplay loop src="assets/video/kidsPlaying.mp4" muted></video>
