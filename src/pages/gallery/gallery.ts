@@ -29,16 +29,16 @@ export class GalleryPage implements OnInit {
   }
   
   onSelect(selectedItem: any, index: number) {
-    if (this.disabled[index] !== true) {
-      this.photoService.addPhotos(selectedItem);
-      this.disabled[index] = true;
-      this.selectStatus = true;
-      this.indexNumber.push(index);
-    } 
-    else {
-      this.photoService.removePhotosFromArray(selectedItem);
-      this.disabled[index] = false;
-    }
+      if (this.disabled[index] !== true) {
+        this.photoService.addPhotos(selectedItem);
+        this.disabled[index] = true;
+        this.selectStatus = true;
+        this.indexNumber.push(index);
+      } 
+      else {
+        this.photoService.removePhotosFromArray(selectedItem);
+        this.disabled[index] = false;
+      }
   }
   
   onDeletePhotos() {
@@ -56,9 +56,18 @@ export class GalleryPage implements OnInit {
       {
         text: 'Delete',
         handler: () => {
+          const photoToDelete = this.photoService.getPhotos();
+          for(var y = 0; photoToDelete.length > y; y++) {
+            const photoID = photoToDelete[y].id;
+            const position = this.photoSelection.findIndex((x: any) => {
+            return x.id == photoID;
+            });
+          this.photoSelection.splice(position, 1);
           
-          this.photoService.deleteSelectedPhotos(this.photoSelection);
+          }
+          this.photoService.deleteAllPhotosFromArray();
           this.deselectAllPhotos();
+          this.selectStatus = false;
         } 
       }
     ]
@@ -93,6 +102,7 @@ export class GalleryPage implements OnInit {
           this.photoService.addTitle(data.title);
           this.sendInfo();
           this.photoService.storePhotoRoll();
+          this.selectStatus = false;
         }
       }
     ]

@@ -15,8 +15,11 @@ export class PhotoService {
         const position = this.selectedPhotos.findIndex((photoEl: any) => {
             return photoEl.id == photo.id;
         });
-        this.selectedPhotos.splice(position, 1);
-        console.log(this.selectedPhotos);
+            this.selectedPhotos.splice(position, 1);
+            console.log(this.selectedPhotos);
+        if (this.selectedPhotos.length < 0) {
+            return selectStatus = false;
+        }
     }
 
     getPhotos() {
